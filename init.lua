@@ -17,14 +17,13 @@ local lazy_config = require "configs.lazy"
 require("lazy").setup({
   {
     "NvChad/NvChad",
-    lazy = false,
+    lazy = true,
     branch = "v2.5",
     import = "nvchad.plugins",
   },
 
   { import = "plugins" },
 }, lazy_config)
-
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
@@ -35,3 +34,12 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.api.nvim_create_user_command('ObjectTextReplace',function()
+  vim.cmd('%s/`/,\r/g')
+  vim.cmd('%s/。/。`/g')
+  vim.cmd('%s/color> /color>\r/g')
+  vim.cmd('set noendofline')
+  end,{}
+)
+
