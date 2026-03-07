@@ -1,0 +1,19 @@
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+-- Force LSP enum members to use the 'Constant' highlight color
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   pattern = "*",
+--   callback = function()
+--     --vim.api.nvim_set_hl(0, "@lsp.type.enumMember", { link = "Constant" })
+--     --vim.api.nvim_set_hl(0, "@lsp.type.enumMember", { fg = "#4ec9b0" })
+--
+--     local green = { fg = "#4ec9b0", force = true }
+--     -- Target the general token
+--     vim.api.nvim_set_hl(0, "@lsp.type.enumMember", green)
+--
+--     -- Explicitly target the C and C++ specific tokens to override the theme
+--     vim.api.nvim_set_hl(0, "@lsp.type.enumMember.c", green)
+--     vim.api.nvim_set_hl(0, "@lsp.type.enumMember.cpp", green)
+--   end,
+-- })
