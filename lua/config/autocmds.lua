@@ -17,3 +17,20 @@
 --     vim.api.nvim_set_hl(0, "@lsp.type.enumMember.cpp", green)
 --   end,
 -- })
+--
+-- Use LspAttach to clear tagfunc (removes LSP interference with tags)
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.bo[args.buf].tagfunc = ""
+  end,
+})
+
+-- Force block comments for C/C++ files
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+  -- Note: We removed "h" because headers are detected as "c" or "cpp"
+  pattern = { "c", "cpp" },
+  callback = function()
+    -- Use opt_local to force the setting for the current buffer
+    vim.opt_local.commentstring = "/* %s */"
+  end,
+})

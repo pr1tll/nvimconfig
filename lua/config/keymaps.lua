@@ -59,3 +59,24 @@ vim.keymap.set("c", "<C-k>", "<Up>", { desc = "上一条命令历史" })
 
 -- 映射 Ctrl-j 为向下翻历史 (匹配已输入的前缀)
 vim.keymap.set("c", "<C-j>", "<Down>", { desc = "下一条命令历史" })
+
+-- 将 gd 绑定到 LSP 的跳转定义功能
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Jump to Definition" })
+
+-- 建议顺便把这些也加上，非常实用
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "查看所有引用" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "显示函数文档说明" })
+
+-- 一键执行 clangd 的头文件清理/补全任务
+vim.keymap.set("n", "<leader>ci", function()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "quickfix" }, -- 告诉 clangd 自动应用所有“快速修复”
+    },
+    filter = function(action)
+      -- 仅针对包含关系（Include cleaner）的动作进行自动处理
+      return action.title:match("Add") or action.title:match("Remove")
+    end,
+  })
+end, { desc = "一键自动整理头文件" })

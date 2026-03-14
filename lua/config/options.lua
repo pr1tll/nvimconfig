@@ -14,6 +14,9 @@ vim.opt.showtabline = 2
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.wrap = true
+vim.opt.linebreak = true
+
 -- 手动指定使用 xsel 并强制指向 clipboard 选区
 vim.g.clipboard = {
   name = "xsel-manual",
@@ -36,3 +39,9 @@ vim.opt.softtabstop = 8 -- 编辑模式下按退格键时，删除 4 个空格
 
 -- LazyVim 默认使用 nvim-notify
 vim.g.notify_timeout = 10000 -- 设置为 3 秒
+
+-- 在 init.lua 中
+vim.opt.tags = "./tags;,tags"
+
+-- 禁用全局 LSP Inlay Hints 默认开启
+vim.g.lsp_inlay_hints_enabled = false
