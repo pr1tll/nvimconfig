@@ -13,12 +13,12 @@ return {
 
     -- 4. 配置 Universal Ctags 的高级参数 (针对 C/C++ 和嵌入式汇编优化)
     vim.g.gutentags_ctags_extra_args = {
-      "--fields=+niazS", -- 附加更多符号信息（如继承关系、访问权限）
-      "--extras=+q", -- Universal Ctags 语法：为类成员生成全名 tags
-      "--kinds-c++=+p", -- Universal Ctags 语法：包含 C++ 函数原型
-      "--kinds-c=+p", -- 包含 C 语言的函数原型声明
       "--kinds-c=+d", -- 索引 C 语言的 #define 宏
       "--kinds-c++=+d", -- 索引 C++ 的 #define 宏
+      "--fields=+niazS", -- 附加更多符号信息（如继承关系、访问权限）
+      "--extras=+q", -- Universal Ctags 语法：为类成员生成全名 tags
+      "--kinds-c++=-p", -- Universal Ctags 语法：包含 C++ 函数原型
+      "--kinds-c=-p", -- 包含 C 语言的函数原型声明
       "--kinds-asm=+h", -- 包含汇编语言的头文件（对底层开发很有用）
       "--output-format=e-ctags", -- 强制输出格式兼容
     }
